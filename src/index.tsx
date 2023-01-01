@@ -9,7 +9,7 @@ import { createUploadLink } from "apollo-upload-client";
 
 const client = new ApolloClient({
   link: createUploadLink({
-    uri: "http://3.139.236.185:4000/graphql",
+    uri: "https://good-erin-goshawk-tutu.cyclic.app",
   }),
   cache: new InMemoryCache(),
 });
