@@ -17,6 +17,7 @@ import type { RootState } from "../redux/store";
 import { useNavigate } from 'react-router';
 import { Landing } from "./Landing";
 import Stories from "../pages/Stories";
+import SingleStory from "../pages/SingleStory";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -32,6 +33,7 @@ const AnimatedRoutes = () => {
           <Route path="admin" element={<Admin />} />
           <Route path="hotels/:hotelId/info" element={<BookingInfo />} />
           <Route path="stories" element={<Stories/>}/>
+          <Route path="stories/:storyId" element={<SingleStory/>} />
         </Route>
         <Route path="/bookingInfo/:hotelId" element={<BookingInfo />}>
           <Route index element={<Info />} />

@@ -1,5 +1,6 @@
 import React from "react";
 import Happy from "../images/happyfamily.png";
+import { Link } from "react-router-dom";
 
 const Stories = () => {
   return (
@@ -18,7 +19,10 @@ const Stories = () => {
             soon ...
           </h2>
           <p className="text-sm text-gray-400 mb-12">Angga, Product Designer</p>
-          <button className="btn">Read their story</button>                   
+
+          <Link to={"/stories/:storyId"}>
+            <button className="btn">Read their story</button>
+          </Link>
         </div>
       </div>
     </div>

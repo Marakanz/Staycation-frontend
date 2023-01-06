@@ -1,6 +1,8 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../redux/store";
 import PodoWae from "../images/podowae.png";
 import Stepper from "../images/stepper.svg"
 import { GET_HOTEL } from "../queries/queries";
@@ -9,6 +11,7 @@ const Info = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
   console.log(id);
+  const { isFetching, currentUser } = useSelector((state: RootState) => state);
   const {data, loading } = useQuery(GET_HOTEL, {
     variables: { id: id}
   })
@@ -75,7 +78,7 @@ const Info = () => {
         </div>
         <div className="flex flex-col items-center justify-center w-full mt-24">
           <button className="btn md:w-5/12 mb-4">
-            <Link to={"/bookingInfo/:hotelId/payment"}> Continue to Book</Link>
+            <Link to={currentUser? "/bookingInfo/:hotelId/payment" : "/auth"}> Continue to Book</Link>
           </button>
 
           <button className="cancel-btn md:w-5/12">

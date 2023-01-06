@@ -14,7 +14,7 @@ const Hotel = (props: HotelProps) => {
   const [popular, setPopular] = useState(false);
 
   return (
-    <Link to={`/home/hotels/${props.id}`}>
+    <Link to={`/hotels/${props.id}`}>
       <div className="relative mb-5 pb-3 rounded-xl transiton duration-300 shadow hover:shadow-lg hover:shadow-blue-200">
         <img src={props.image} className="img-grids mb-2" />
         {popular && (
