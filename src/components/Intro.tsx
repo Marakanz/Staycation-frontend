@@ -17,7 +17,7 @@ const Intro = () => {
             make another memorable moments.
           </p>
           <button className="btn">
-            <Link to={"/home/hotels"}> Show me Now</Link>
+            <Link to={"/hotels"}> Show me Now</Link>
           </button>
           <div className="flex text-gray-400 mt-10">
             <div className="mx-2">

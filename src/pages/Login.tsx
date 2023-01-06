@@ -47,7 +47,7 @@ const Login = () => {
         console.log(data2)
         await LoginAction(dispatch, data2);
         console.log(data);
-        currentUser ?  navigate("/home") : navigate("/");
+        currentUser ?  navigate("/") : navigate("/auth");
     }
 
   return (

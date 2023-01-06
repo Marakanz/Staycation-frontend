@@ -28,7 +28,7 @@ const Register = () => {
       },
     });
     console.log(data);
-    data ? navigate("/login") : console.log("Error try again");
+    data ? navigate("/auth") : console.log("Error try again");
   };
   return (
     <div className="w-full register">

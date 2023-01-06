@@ -40,17 +40,17 @@ const Navbar = () => {
           <ul className={` nav-menu`} ref={linksRef}>
             <div className="hover:bg-violet-200 hover:md:bg-transparent px-4">
               <li className="nav-item">
-                <Link to={`/home`}>Home</Link>
+                <Link to={`/`}>Home</Link>
               </li>
             </div>
             <div className="hover:bg-violet-200 hover:md:bg-transparent px-4">
               <li className="nav-item">
-                <Link to={`/home/hotels`}>Hotels</Link>
+                <Link to={`/hotels`}>Hotels</Link>
               </li>
             </div>
             <div className="hover:bg-violet-200 hover:md:bg-transparent px-4">
               <li className="nav-item">
-                <Link to={`/`}>Stories</Link>
+                <Link to={`/stories`}>Stories</Link>
               </li>
             </div>
             <div className="hover:bg-violet-200 hover:md:bg-transparent px-4">

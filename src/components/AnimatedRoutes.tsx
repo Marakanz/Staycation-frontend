@@ -16,6 +16,7 @@ import Register from "../pages/Register";
 import type { RootState } from "../redux/store";
 import { useNavigate } from 'react-router';
 import { Landing } from "./Landing";
+import Stories from "../pages/Stories";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -24,19 +25,20 @@ const AnimatedRoutes = () => {
   return (
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
-        <Route path="/home" element={<Layout />}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="hotels" element={<Hotels />} />
           <Route path="hotels/:hotelId" element={<SingleHotel />} />
           <Route path="admin" element={<Admin />} />
           <Route path="hotels/:hotelId/info" element={<BookingInfo />} />
+          <Route path="stories" element={<Stories/>}/>
         </Route>
         <Route path="/bookingInfo/:hotelId" element={<BookingInfo />}>
           <Route index element={<Info />} />
           <Route path="payment" element={<Payments />} />
           <Route path="completed" element={<Completed />} />
         </Route>
-        <Route path="/">
+        <Route path="/auth">
           <Route path="register" element={<Register />} />
           <Route index element={currentUser ? <Landing/> : <Login />} />
         </Route>

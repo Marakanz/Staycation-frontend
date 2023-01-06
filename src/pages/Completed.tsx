@@ -16,7 +16,7 @@ const Completed = () => {
         </div>
         <div className="flex flex-col items-center justify-center w-full mt-24">
           <button className="btn md:w-5/12 mb-4">
-            <Link to={"/home"}> Back to Home </Link>
+            <Link to={"/"}> Back to Home </Link>
           </button>
         </div>
       </div>
