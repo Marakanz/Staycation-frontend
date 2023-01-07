@@ -8,13 +8,25 @@ import Stepper from "../images/stepper.svg"
 import { GET_HOTEL } from "../queries/queries";
 
 const Info = () => {
+  
   const location = useLocation();
   const id = location.pathname.split("/")[2];
   console.log(id);
+  interface currentUser {
+    login: {
+      _id: string
+      email: string
+      isAdmin: boolean
+      accessToken: string
+    }
+  }
   const { isFetching, currentUser } = useSelector((state: RootState) => state);
   const {data, loading } = useQuery(GET_HOTEL, {
     variables: { id: id}
   })
+  
+  const email = currentUser["email"];
+  console.log(email);
 
   console.log(data)
   if (loading) {
@@ -61,12 +73,6 @@ const Info = () => {
                 placeholder="Please type here"
                 type="text"
               />
-              <label>Email</label>
-              <input
-                className="w-full mb-2 p-2 bg-gray-100 rounded"
-                placeholder="Email"
-                type="email"
-              />
               <label>Phone number</label>
               <input
                 className="w-full mb-2 p-2 bg-gray-100 rounded"
@@ -82,7 +88,7 @@ const Info = () => {
           </button>
 
           <button className="cancel-btn md:w-5/12">
-            <Link to={"/home/hotels/:hotelId"}> Cancel</Link>
+            <Link to={"/hotels/:hotelId"}> Cancel</Link>
           </button>
         </div>
       </div>

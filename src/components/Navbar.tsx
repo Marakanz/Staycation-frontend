@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { GoThreeBars } from "react-icons/go";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../redux/store";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const linksContainerRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLUListElement>(null);
+  const { isFetching, currentUser } = useSelector((state: RootState) => state);
 
   useEffect(() => {
     const linksHeight = linksRef.current?.getBoundingClientRect().height;
@@ -55,7 +58,7 @@ const Navbar = () => {
             </div>
             <div className="hover:bg-violet-200 hover:md:bg-transparent px-4">
               <li className="nav-item">
-                <Link to={`/`}>Bookings</Link>
+                <Link to={currentUser? `/user/` : '/auth'}>Bookings</Link>
               </li>
             </div>
           </ul>

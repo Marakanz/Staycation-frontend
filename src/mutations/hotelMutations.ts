@@ -15,6 +15,7 @@ export const ADD_HOTEL = gql(`
 export const LOGIN = gql(`
     mutation login($email: String!, $password: String!) {
       login (email: $email, password: $password) {
+        _id
         email
         isAdmin
         accessToken

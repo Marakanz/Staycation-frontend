@@ -1,9 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+interface currentUser {
+    login: {
+      _id?: string
+      email?: string
+      isAdmin?: boolean
+      accessToken?: string
+    }
+  }
+
+  const user: currentUser["login"] = {}
+
 const userSlice = createSlice({
     name: "user",
     initialState: {
-        currentUser: null,
+        currentUser: user,
         isFetching: false,
         error: false,
     },
