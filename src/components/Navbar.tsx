@@ -58,7 +58,7 @@ const Navbar = () => {
             </div>
             <div className="hover:bg-violet-200 hover:md:bg-transparent px-4">
               <li className="nav-item">
-                <Link to={currentUser? `/user/` : '/auth'}>Bookings</Link>
+                <Link to={currentUser? `/user/${currentUser?._id}` : '/auth'}>Bookings</Link>
               </li>
             </div>
           </ul>

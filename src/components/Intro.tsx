@@ -1,4 +1,4 @@
-import Banner from "../images/banner.svg";
+import Banner from "../images/banner.png";
 import TravelBag from "../images/travelbag.svg";
 import Location from "../images/location.svg";
 import Camera from "../images/camera.svg"
