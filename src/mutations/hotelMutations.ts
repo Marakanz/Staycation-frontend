@@ -33,3 +33,10 @@ export const REGISTER = gql(`
     }
 `)
 
+export const emptyUser = {
+  _id: "None",
+  email: "None",
+  isAdmin: false,
+  accessToken: "None"
+}
+

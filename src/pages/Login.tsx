@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 import { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN } from "../mutations/hotelMutations";
+import { emptyUser } from "../mutations/hotelMutations";
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -21,9 +22,15 @@ const Login = () => {
             console.log(error.graphQLErrors);
           },
     })
+
+    interface loginData {
+        email: string
+        password: string
+
+    }
     
 
-    const LoginAction = async(dispatch: any, user: any) => {
+    const LoginAction = async(dispatch: any, user: loginData) => {
         dispatch(loginStart());
         try{
             await login({
@@ -32,6 +39,7 @@ const Login = () => {
                     password: user.password
                 }
             })
+            console.log(data)
             dispatch(loginSuccess(data));
         } catch (error){
             dispatch(loginError());
@@ -44,10 +52,10 @@ const Login = () => {
             email: email,
             password: password
        }
-        console.log(data2)
         await LoginAction(dispatch, data2);
-        console.log(data);
-        currentUser ?  navigate("/") : navigate("/auth");
+        console.log(currentUser);
+        console.log(emptyUser)
+        currentUser !== emptyUser && currentUser !== undefined ? navigate("/") : navigate("/auth");
     }
 
   return (

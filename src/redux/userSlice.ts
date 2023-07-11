@@ -9,7 +9,12 @@ interface currentUser {
     }
   }
 
-  const user: currentUser["login"] = {}
+  const user = {
+    _id: "None",
+    email: "None",
+    isAdmin: false,
+    accessToken: "None"
+  }
 
 const userSlice = createSlice({
     name: "user",
