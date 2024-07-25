@@ -9,7 +9,7 @@ import { createUploadLink } from "apollo-upload-client";
 
 const client = new ApolloClient({
   link: createUploadLink({
-    uri: "https://good-erin-goshawk-tutu.cyclic.app",
+    uri: "https://staycation-backend-8tzd.onrender.com/",
   }),
   cache: new InMemoryCache(),
 });
