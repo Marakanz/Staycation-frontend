@@ -77,14 +77,14 @@ const SingleHotel = () => {
       </div>
       <div className="flex mb-8">
         <div className="w-3/5 flex items-center mr-2 md:mr-5">
-          <img src={Mansion} className="w-auto h-auto" />
+          <img src={Mansion} alt="image2" className="w-auto h-auto" />
         </div>
         <div className="w-2/5 grid grid-rows-2 gap-5">
           <div className="flex items-end">
-            <img src={data?.getHotel.image} className="w-full h-4/5" />
+            <img src={data?.getHotel.image} alt="image1" className="w-full h-4/5" />
           </div>
           <div>
-            <img src={Bedroom} className="w-auto" />
+            <img src={Bedroom} alt="image3" className="w-auto" />
           </div>
         </div>
       </div>
@@ -138,7 +138,7 @@ const SingleHotel = () => {
             <div className="flex mb-5">
               <button onClick={() => setIsOpen(!isOpen)}>
                 <div className="w-12 h-10 p-1 bg-blue-900 flex items-center justify-center rounded">
-                  <img src={calendar} />
+                  <img src={calendar} alt="logo" />
                 </div>
               </button>
               <div className="flex w-full items-center justify-center bg-gray-100">
