@@ -7,12 +7,13 @@ import Hotel from "../components/singleHotel";
 
 const Hotels = () => {
   const { data } = useQuery(GET_HOTELS);
+  const time = new Date().getMinutes();
   useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-  }, []);
+  }, [time]);
   return (
     <motion.div
       initial={{ opacity: 0 }}
