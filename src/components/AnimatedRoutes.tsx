@@ -48,7 +48,7 @@ const AnimatedRoutes = () => {
           <Route path="payment" element={<Payments />} />
           <Route path="completed" element={<Completed />} />
         </Route>
-        <Route path="/auth">
+        <Route path="/user">
           <Route index element={currentUser === emptyUser? <Landing /> : <Login />} />
           <Route path="register" element={<Register />} />
         </Route>

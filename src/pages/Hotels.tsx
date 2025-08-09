@@ -8,6 +8,7 @@ import Hotel from "../components/singleHotel";
 const Hotels = () => {
   const { data } = useQuery(GET_HOTELS);
   const time = new Date().getMinutes();
+  const timeArray = []
   useEffect(() => {
     window.scrollTo({
       top: 0,

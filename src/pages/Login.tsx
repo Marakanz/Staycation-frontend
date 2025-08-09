@@ -39,8 +39,10 @@ const Login = () => {
                     password: user.password
                 }
             })
-            console.log(data)
-            dispatch(loginSuccess(data));
+            console.log(data);
+            if (data !== undefined) {
+                dispatch(loginSuccess(data.login));
+            }
         } catch (error){
             dispatch(loginError());
         }
@@ -55,7 +57,7 @@ const Login = () => {
         await LoginAction(dispatch, data2);
         console.log(currentUser);
         console.log(emptyUser)
-        currentUser !== emptyUser && currentUser !== undefined ? navigate("/") : navigate("/auth");
+        // currentUser === emptyUser ?   navigate("/auth") : navigate("/");
     }
 
   return (
