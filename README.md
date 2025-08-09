@@ -77,7 +77,7 @@ src/
    Create a `.env` file in the root directory (if needed):
    ```env
    REACT_APP_API_URL=https://staycation-backend-8tzd.onrender.com/
-   REACT_APP_CLOUDINARY_CLOUD_NAME=your_cloudinary_name
+   CLOUDINARY_URL=cloudinary://399166194617254:KMTnF72qn2ACothZ97lCO_Xh7Lk@clothing-wave
    ```
 
 4. **Start the development server**
