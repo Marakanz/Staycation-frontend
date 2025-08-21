@@ -13,24 +13,43 @@ export const ADD_HOTEL = gql(`
 `);
 
 export const LOGIN = gql(`
-    mutation login($email: String!, $password: String!) {
-      login (email: $email, password: $password) {
-        _id
-        email
-        isAdmin
-        accessToken
-      }
+    input LoginInput {
+      email: String!
+      password: String!
+  }
+    mutation login($input: LoginInput!){
+    login(input: $input) {
+      _id
+      email
+      firstName
+      lastName
+      isAdmin
+      accessToken
+      createdAt
     }
+}
 `)
 
 export const REGISTER = gql(`
-    mutation register($email: String!, $password: String!, $isAdmin: Boolean!) {
-      register (email: $email, password: $password,admin: $isAdmin) {
-        email
-        isAdmin
-        accessToken
-      }
+    input RegisterInput {
+      email: String!
+      password: String!
+      firstName: String
+      lastName: String
+      admin: Boolean
+  }
+      
+    mutation register($input: RegisterInput!){
+    register(input: $input) {
+      _id
+      email
+      firstName
+      lastName
+      isAdmin
+      accessToken
+      createdAt
     }
+}
 `)
 
 export const emptyUser = {
