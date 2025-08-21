@@ -100,6 +100,7 @@ src/
 The application connects to a GraphQL backend hosted at:
 ```
 https://staycation-backend-8tzd.onrender.com/
+Backend Github Repo: https://github.com/Marakanz/Staycation-backend/tree/master
 ```
 
 ### State Management
