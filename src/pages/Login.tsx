@@ -122,7 +122,7 @@ const Login = () => {
           <p className="text-sm underline cursor-pointer" onClick={() => console.log("Forgot password clicked")}>
             Forgot password?
           </p>
-          <Link to="/user/register">
+          <Link to="/register">
             <p className="text-sm underline">Sign up</p>
           </Link>
         </div>

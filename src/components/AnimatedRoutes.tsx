@@ -140,7 +140,7 @@ const AnimatedRoutes = React.memo(() => {
           </Route>
 
           <Route path="/user" element={isAuthenticated ? <Landing /> : <Login />} />
-          <Route path="/user/register" element={isAuthenticated ? <Landing /> : <Register />} />
+          <Route path="/register" element={isAuthenticated ? <Landing /> : <Register />} />
           <Route path="/auth" element={isAuthenticated ? <Landing /> : <Login />} />
 
           <Route path="*" element={<NotFound />} />
