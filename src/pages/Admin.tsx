@@ -2,7 +2,7 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import axios from "axios";
 import { useState } from "react";
 import { ADD_HOTEL } from "../mutations/hotelMutations";
-import { GET_HOTELS } from "../queries/queries";
+import { GET_HOTELS } from "../queries/hotelQueries";
 
 
 

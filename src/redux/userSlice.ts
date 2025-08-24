@@ -1,43 +1,60 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User, EMPTY_USER } from "../mutations/userMutations";
 
-interface currentUser {
-    login: {
-      _id?: string
-      email?: string
-      isAdmin?: boolean
-      accessToken?: string
-    }
-  }
+interface UserState {
+  currentUser: User;
+  isFetching: boolean;
+  error: boolean;
+  errorMessage?: string;
+}
 
-  const user = {
-    _id: "None",
-    email: "None",
-    isAdmin: false,
-    accessToken: "None"
-  }
+const initialState: UserState = {
+  currentUser: EMPTY_USER,
+  isFetching: false,
+  error: false,
+  errorMessage: undefined,
+};
 
 const userSlice = createSlice({
-    name: "user",
-    initialState: {
-        currentUser: user,
-        isFetching: false,
-        error: false,
+  name: "user",
+  initialState,
+  reducers: {
+    loginStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+      state.errorMessage = undefined;
     },
-    reducers:{
-        loginStart: (state: any) => {
-            state.isFetching = true;
-        },
-        loginSuccess: (state: any, action: any) => {
-            state.isFetching = false;
-            state.error = false;
-            state.currentUser = action.payload;
-        },
-        loginError:(state: any) => {
-            state.isFetching = false;
-            state.error = true;
-        },
+    loginSuccess: (state, action: PayloadAction<User>) => {
+      state.isFetching = false;
+      state.error = false;
+      state.currentUser = action.payload;
+      state.errorMessage = undefined;
+    },
+    loginError: (state, action: PayloadAction<string>) => {
+      state.isFetching = false;
+      state.error = true;
+      state.currentUser = EMPTY_USER;
+      state.errorMessage = action.payload;
+    },
+    logout: (state) => {
+      state.currentUser = EMPTY_USER;
+      state.error = false;
+      state.isFetching = false;
+      state.errorMessage = undefined;
+    },
+    clearError: (state) => {
+      state.error = false;
+      state.errorMessage = undefined;
     }
+  }
 });
 
-export const { loginStart, loginError, loginSuccess } = userSlice.actions;
+export const { 
+  loginStart, 
+  loginError, 
+  loginSuccess, 
+  logout, 
+  clearError 
+} = userSlice.actions;
+
 export default userSlice.reducer;

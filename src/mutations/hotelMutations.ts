@@ -1,61 +1,46 @@
 import { gql } from "@apollo/client";
 
-export const ADD_HOTEL = gql(`
-    mutation addHotel($name: String!, $location: String!, $price: String!, $image: String, $desc: String){
-        addHotel(name: $name, location: $location, price: $price, image: $image, desc: $desc){
-            name
-            location
-            price
-            image
-            description
-        }
-    }
-`);
+// Type definitions
+export interface Hotel {
+  id: string;
+  name: string;
+  location: string;
+  price: string;
+  image?: string;
+  description?: string;
+  features?: string[];
+}
 
-export const LOGIN = gql(`
-    input LoginInput {
-      email: String!
-      password: String!
+export const ADD_HOTEL = gql`
+  mutation addHotel($name: String!, $location: String!, $price: String!, $image: String, $description: String, $features: [String]) {
+    addHotel(name: $name, location: $location, price: $price, image: $image, description: $description, features: $features) {
+      id
+      name
+      location
+      price
+      image
+      description
+      features
+    }
   }
-    mutation login($input: LoginInput!){
-    login(input: $input) {
-      _id
-      email
-      firstName
-      lastName
-      isAdmin
-      accessToken
-      createdAt
-    }
-}
-`)
+`;
 
-export const REGISTER = gql(`
-    input RegisterInput {
-      email: String!
-      password: String!
-      firstName: String
-      lastName: String
-      admin: Boolean
+export const UPDATE_HOTEL = gql`
+  mutation updateHotel($id: ID!, $name: String, $location: String, $price: String, $image: String, $description: String, $features: [String]) {
+    updateHotel(id: $id, name: $name, location: $location, price: $price, image: $image, description: $description, features: $features) {
+      id
+      name
+      location
+      price
+      image
+      description
+      features
+    }
   }
-      
-    mutation register($input: RegisterInput!){
-    register(input: $input) {
-      _id
-      email
-      firstName
-      lastName
-      isAdmin
-      accessToken
-      createdAt
-    }
-}
-`)
+`;
 
-export const emptyUser = {
-  _id: "None",
-  email: "None",
-  isAdmin: false,
-  accessToken: "None"
-}
-
+export const DELETE_HOTEL = gql`
+  mutation deleteHotel($id: ID!) {
+    deleteHotel(id: $id)
+  }
+`;

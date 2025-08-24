@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useQuery } from "@apollo/client";
-import { GET_HOTELS } from "../queries/queries";
+import { GET_HOTELS } from "../queries/hotelQueries";
 import Hotel from "../components/singleHotel";
 
 const Hotels = () => {

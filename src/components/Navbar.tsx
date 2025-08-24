@@ -1,71 +1,71 @@
-import React, { useEffect, useRef, useState } from "react";
+// 4. Navbar.tsx - Optimized
+import React, { useCallback, useMemo, useState } from "react";
 import { GoThreeBars } from "react-icons/go";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import type { RootState } from "../redux/store";
 
-const Navbar = () => {
-  const [open, setOpen] = useState(false);
-  const linksContainerRef = useRef<HTMLDivElement>(null);
-  const linksRef = useRef<HTMLUListElement>(null);
-  const { isFetching, currentUser } = useSelector((state: RootState) => state);
+const Navbar = React.memo(() => {
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const { currentUser } = useSelector((state: RootState) => state.user);
 
-  useEffect(() => {
-    const linksHeight = linksRef.current?.getBoundingClientRect().height;
-    console.log(linksHeight);
-    // if (open) {
-    //   if (linksContainerRef.current != null) {
-    //     linksContainerRef.current.style.height = `${linksHeight}px`;
-    //   }
-    // } else {
-    //   if (linksContainerRef.current != null) {
-    //     linksContainerRef.current.style.height = `0px`;
-    //   }
-    // }
-  }, [open]);
+  const toggleMenu = useCallback(() => {
+    setIsOpen(prev => !prev);
+  }, []);
+
+  const navItems = useMemo(() => [
+    { to: "/", label: "Home" },
+    { to: "/hotels", label: "Hotels" },
+    { to: "/stories", label: "Stories" },
+    { 
+      to: currentUser?._id ? `/user/${currentUser._id}` : '/user', 
+      label: "Bookings" 
+    }
+  ], [currentUser?._id]);
+
+  const isActiveLink = useCallback((path: string) => 
+    location.pathname === path, [location.pathname]);
+
   return (
-    <>
-      <nav className="md:px-16 md:flex items-center shadow-lg justify-between py-4 border-b border-gray-300">
-        <div className="px-4 flex justify-between items-center">
-          <h2 className="logo">
-            Stay<span className="font-purple">cation.</span>
-          </h2>
-          <button onClick={() => setOpen(!open)}>
-            <GoThreeBars className="text-2xl md:hidden" />
-          </button>
-        </div>
-        <div
-          className={`${
-            open ? `h-40 nav-links md:h-auto` : `h-0 nav-links md:h-auto md:block`
-          }`}
-          ref={linksContainerRef}
+    <nav className="md:px-16 md:flex items-center shadow-lg justify-between py-4 border-b border-gray-300">
+      <div className="px-4 flex justify-between items-center">
+        <Link to="/" className="logo">
+          Stay<span className="font-purple">cation.</span>
+        </Link>
+        <button 
+          onClick={toggleMenu}
+          className="md:hidden"
+          aria-label="Toggle menu"
+          aria-expanded={isOpen}
         >
-          <ul className={` nav-menu`} ref={linksRef}>
-            <div className="hover:bg-violet-200 hover:md:bg-transparent px-4">
-              <li className="nav-item">
-                <Link to={`/`}>Home</Link>
-              </li>
-            </div>
-            <div className="hover:bg-violet-200 hover:md:bg-transparent px-4">
-              <li className="nav-item">
-                <Link to={`/hotels`}>Hotels</Link>
-              </li>
-            </div>
-            <div className="hover:bg-violet-200 hover:md:bg-transparent px-4">
-              <li className="nav-item">
-                <Link to={`/stories`}>Stories</Link>
-              </li>
-            </div>
-            <div className="hover:bg-violet-200 hover:md:bg-transparent px-4">
-              <li className="nav-item">
-                <Link to={currentUser? `/user/${currentUser?._id}` : '/auth'}>Bookings</Link>
-              </li>
-            </div>
-          </ul>
-        </div>
-      </nav>
-    </>
+          <GoThreeBars className="text-2xl" />
+        </button>
+      </div>
+      
+      <div className={`${
+        isOpen ? 'h-40 nav-links md:h-auto' : 'h-0 nav-links md:h-auto md:block'
+      }`}>
+        <ul className="nav-menu">
+          {navItems.map(({ to, label }) => (
+            <li key={to} className="nav-item">
+              <div className="hover:bg-violet-200 hover:md:bg-transparent px-4">
+                <Link 
+                  to={to}
+                  className={isActiveLink(to) ? 'text-blue-700 font-medium' : ''}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {label}
+                </Link>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
   );
-};
+});
+
+Navbar.displayName = 'Navbar';
 
 export default Navbar;
