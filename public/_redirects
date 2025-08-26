@@ -1,1 +1,7 @@
 /*    /index.html   200
+
+# Handle SPA routing
+/user/*    /index.html   200
+/hotels/*    /index.html   200
+/stories/*    /index.html   200
+/bookingInfo/*    /index.html   200
